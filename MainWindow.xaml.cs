@@ -30,7 +30,6 @@ namespace nTrehou_Calculatorv2
         float n1, n2 = 0;
         double? result = 0;
         string operation, special = "";
-
         private void onClick_Number(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
@@ -54,74 +53,37 @@ namespace nTrehou_Calculatorv2
             tb_DisplayCalc.Text = tb_DisplayNb.Text + " " + operation;
 
             tb_DisplayNb.Text = "0";
-        }
-     
+        }     
         private void onClick_Equal(object sender, RoutedEventArgs e)
         {
+
             Button btn = sender as Button;
-            if(btn.Content.ToString() == "²" || btn.Content.ToString() == "√" || btn.Content.ToString() == "π")
+            switch (btn.Content.ToString())
             {
-                n1 = float.Parse(tb_DisplayNb.Text);
-                switch (btn.Content.ToString())
-                {
-                    case "²":
-                        result = n1 * n1;
-                        tb_DisplayCalc.Text =  n1 + btn.Content.ToString();
-                        
-                        break;
-                    case "√":
-                        result = (float)Math.Sqrt(n1);
-                        tb_DisplayCalc.Text = btn.Content.ToString() + n1;
-                        break;
-                    case "π":
-                        result = n1 * Math.PI;
-                        tb_DisplayCalc.Text = n1 + btn.Content.ToString();
-                        break;
-                }
+                case "²":
+                    result = CalculSpe(n1, btn.Content.ToString());
+                    break;
+                case "√":
+                    result = CalculSpe(n1, btn.Content.ToString());
+                    break;
+                case "π":
+                    result = CalculSpe(n1, btn.Content.ToString());
+                    break;
+                default:
+                    n2 = float.Parse(tb_DisplayNb.Text);
+                    result = CalculOp(n1, operation, n2);
+                    break;
             }
-            else
-            {
-                n2 = float.Parse(tb_DisplayNb.Text);
-                tb_DisplayCalc.Text = n1 + " " + operation + " " + n2;
-                switch (operation)
-                {
-                    case "+":
-                        result = n1 + n2;
-                        break;
-                    case "-":
-                        result = n1 - n2;
-                        break;                    
-                    case "x":
-                        result = n1 * n2;
-                        break;                    
-                    case "/":
-                        if(n2 == 0)
-                        {
-                            result = null;
-                        }
-                        else
-                        {
-                            result = n1 / n2;
-                        }
-                        break;
-                    case "^":
-
-                        result = (float)Math.Pow(n1, n2);
-                        break;
-
-                }
-            }
-            if(result == null)
+            if (result == null)
             {
                 tb_DisplayNb.Text = "NaN";
             }
             else
             {
                 tb_DisplayNb.Text = result.ToString();
-
             }
-        }        
 
+        }        
         private void onClick_AllClear(object sender, RoutedEventArgs e)
         {
             tb_DisplayNb.Text = "";
@@ -130,10 +92,10 @@ namespace nTrehou_Calculatorv2
             n1 = 0;
             n2 = 0; 
             result = 0;
-        } // Done
+        } 
         private void onClick_Return(object sender, RoutedEventArgs e)
         {
-            if (tb_DisplayNb.Text == "")
+            if (tb_DisplayNb.Text == "" || tb_DisplayNb.Text == "NaN")
             {
                 tb_DisplayNb.Text = "0";
             }
@@ -141,6 +103,60 @@ namespace nTrehou_Calculatorv2
             {
                 tb_DisplayNb.Text = tb_DisplayNb.Text.Remove(tb_DisplayNb.Text.Length - 1);
             }
-        } // Done
+        } 
+        private Double? CalculSpe(float n1, string operation)
+        {
+            n1 = float.Parse(tb_DisplayNb.Text);
+            switch (operation)
+                {
+                    case "²":
+                        result = n1 * n1;
+                        tb_DisplayCalc.Text = n1 + operation;
+
+                        break;
+                    case "√":
+                        result = (float)Math.Sqrt(n1);
+                        tb_DisplayCalc.Text = operation + n1;
+                        break;
+                    case "π":
+                        result = n1 * Math.PI;
+                        tb_DisplayCalc.Text = n1 + operation;
+                        break;
+                }
+            return result;
+        }
+        private Double? CalculOp(float n1, string operation, float n2)
+        {
+            tb_DisplayCalc.Text = n1 + " " + operation + " " + n2;
+            switch (operation)
+            {
+                case "+":
+                    result = n1 + n2;
+                    break;
+                case "-":
+                    result = n1 - n2;
+                    break;
+                case "x":
+                    result = n1 * n2;
+                    break;
+                case "^":
+                    result = (float)Math.Pow(n1, n2);
+                    break;
+                case "/":
+                    if (n2 == 0)
+                    {
+                        result = null;
+                    }
+                    else
+                    {
+                        result = n1 / n2;
+                    }
+                    break;
+            }
+
+            return result;
+        }
+
+
     }
 }
