@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,123 @@ namespace nTrehou_Calculatorv2
         public MainWindow()
         {
             InitializeComponent();
+            tb_DisplayNb.Text = "0";
+            tb_DisplayCalc.Text = "";
         }
+        float n1, n2 = 0;
+        double? result = 0;
+        string operation, special = "";
 
+        private void onClick_Number(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            if((tb_DisplayNb.Text == "0" && btn.Content.ToString() != ".") || btn.Content.ToString() == "(-)")
+            {
+                tb_DisplayNb.Text = (btn.Content.ToString() == "(-)" ? "-" : btn.Content.ToString());
+            }
+            else 
+            {
+                tb_DisplayNb.Text += btn.Content.ToString();
+            }
+        }
+        private void onClick_Operation(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+
+            operation = btn.Content.ToString();
+            var NbrInfos = new NumberFormatInfo();
+            NbrInfos.NegativeSign = "-";
+            n1 = float.Parse(tb_DisplayNb.Text, NbrInfos);
+            tb_DisplayCalc.Text = tb_DisplayNb.Text + " " + operation;
+
+            tb_DisplayNb.Text = "0";
+        }
+     
+        private void onClick_Equal(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+            if(btn.Content.ToString() == "²" || btn.Content.ToString() == "√" || btn.Content.ToString() == "π")
+            {
+                n1 = float.Parse(tb_DisplayNb.Text);
+                switch (btn.Content.ToString())
+                {
+                    case "²":
+                        result = n1 * n1;
+                        tb_DisplayCalc.Text =  n1 + btn.Content.ToString();
+                        
+                        break;
+                    case "√":
+                        result = (float)Math.Sqrt(n1);
+                        tb_DisplayCalc.Text = btn.Content.ToString() + n1;
+                        break;
+                    case "π":
+                        result = n1 * Math.PI;
+                        tb_DisplayCalc.Text = n1 + btn.Content.ToString();
+                        break;
+                }
+            }
+            else
+            {
+                n2 = float.Parse(tb_DisplayNb.Text);
+                tb_DisplayCalc.Text = n1 + " " + operation + " " + n2;
+                switch (operation)
+                {
+                    case "+":
+                        result = n1 + n2;
+                        break;
+                    case "-":
+                        result = n1 - n2;
+                        break;                    
+                    case "x":
+                        result = n1 * n2;
+                        break;                    
+                    case "/":
+                        if(n2 == 0)
+                        {
+                            result = null;
+                        }
+                        else
+                        {
+                            result = n1 / n2;
+                        }
+                        break;
+                    case "^":
+
+                        result = (float)Math.Pow(n1, n2);
+                        break;
+
+                }
+            }
+            if(result == null)
+            {
+                tb_DisplayNb.Text = "NaN";
+            }
+            else
+            {
+                tb_DisplayNb.Text = result.ToString();
+
+            }
+        }        
+
+        private void onClick_AllClear(object sender, RoutedEventArgs e)
+        {
+            tb_DisplayNb.Text = "";
+            tb_DisplayCalc.Text = "";
+            operation = "";
+            n1 = 0;
+            n2 = 0; 
+            result = 0;
+        } // Done
+        private void onClick_Return(object sender, RoutedEventArgs e)
+        {
+            if (tb_DisplayNb.Text == "")
+            {
+                tb_DisplayNb.Text = "0";
+            }
+            else
+            {
+                tb_DisplayNb.Text = tb_DisplayNb.Text.Remove(tb_DisplayNb.Text.Length - 1);
+            }
+        } // Done
     }
 }
