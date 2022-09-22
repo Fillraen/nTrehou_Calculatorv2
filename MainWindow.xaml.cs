@@ -24,5 +24,6 @@ namespace nTrehou_Calculatorv2
         {
             InitializeComponent();
         }
+
     }
 }

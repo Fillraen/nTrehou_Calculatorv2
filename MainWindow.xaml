@@ -5,69 +5,186 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:nTrehou_Calculatorv2"
         mc:Ignorable="d"
-        Background="#555B60"
-        Title="MainWindow" Height="600" Width="400">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="200"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.Resources>
-            <Style TargetType="{x:Type Button}">
-                <Setter Property="Margin" Value="10" />
-                <Setter Property="FontSize" Value="30" />
-                <Setter Property="Background" Value="#555B60" />
-                <Setter Property="Foreground" Value="#FFFFFF" />
-                <Setter Property="HorizontalContentAlignment" Value="Center" />
-            </Style>
-            <Style x:Key="operations" TargetType="{x:Type Button}">
-                <Setter Property="Margin" Value="7" />
-                <Setter Property="FontSize" Value="38" />
-                <Setter Property="Background" Value="#F3AB41" />
-                <Setter Property="Foreground" Value="#FFFFFF" />
-                <Setter Property="HorizontalContentAlignment" Value="Center" />
-                <Style.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="BorderBrush" Value="#F3AB41" />
-                        <Setter Property="BorderThickness" Value="2" />
-                        <Setter Property="CornerRadius" Value="15" />
+        Height="550" Width="300" 
+        AllowsTransparency="True" 
+        WindowStyle="None" ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen" Background="{x:Null}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="MainWindow">
+    <Border Background="#22252D" CornerRadius="25">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.6*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style TargetType="{x:Type Grid}">
+                    <!--Arrondir la Grid-->
+                </Style>
+            </Grid.Resources>
+            <StackPanel Grid.Row="0" Grid.Column="0" VerticalAlignment="Bottom">
+                <Label FontSize="50" FontFamily="Oswald" Margin="10" Foreground="#FFFFFF" Content="Calcultrice" HorizontalContentAlignment="Center"/>
+                <TextBlock FontSize="20" FontFamily="Oswald" Text="5 + 8" TextAlignment="Right" Margin="10,10,10,0" Foreground="#FFFFFF" FontWeight="Light" />
+                <TextBlock FontSize="50" FontFamily="Oswald" Text="13" TextAlignment="Right" Foreground="#FFFFFF" Margin="10,10,10,0" FontWeight="DemiBold"/>
+            </StackPanel>
+            <Grid Grid.Row="1" Grid.Column="0" Background="#292D36">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.Resources>
+                    <Style x:Key="operations" TargetType="{x:Type Button}">
+                        <Setter Property="Margin" Value="10" />
+                        <Setter Property="FontSize" Value="25" />
+                        <Setter Property="Background" Value="#272B33" />
+                        <Setter Property="Foreground" Value="#F07979" />
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        <Setter Property="FontWeight" Value="DemiBold"/>
+                        <Style.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="BorderBrush" Value="#272B33" />
+                                <Setter Property="BorderThickness" Value="1" />
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </Style.Resources>
+                    </Style>     
+                    <Style x:Key="special" TargetType="{x:Type Button}">
+                        <Setter Property="Margin" Value="10" />
+                        <Setter Property="FontSize" Value="25" />
+                        <Setter Property="Background" Value="#272B33" />
+                        <Setter Property="Foreground" Value="#26DCBC" />
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        <Setter Property="FontWeight" Value="DemiBold"/>
+                        <Style.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="BorderBrush" Value="#272B33" />
+                                <Setter Property="BorderThickness" Value="1" />
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </Style.Resources>
                     </Style>
-                </Style.Resources>
-            </Style>
-        </Grid.Resources>
-        <TextBox Grid.Row="0" Grid.ColumnSpan="4" Name="tb_Display"/>
-        
-        <Button Grid.Row="1" Grid.Column="0" Name="btn_MC" Content="MC" Style="{StaticResource operations}"/>
-        <Button Grid.Row="1" Grid.Column="1" Name="btn_Madd" Content="M+" Style="{StaticResource operations}"/>
-        <Button Grid.Row="1" Grid.Column="2" Name="btn_div" Content="/" Style="{StaticResource operations}"/>
-        <Button Grid.Row="1" Grid.Column="3" Name="btn_mult" Content="*" Style="{StaticResource operations}"/>
+                    <Style x:Key="numbers" TargetType="{x:Type Button}">
+                        <Setter Property="Margin" Value="10" />
+                        <Setter Property="FontSize" Value="25" />
+                        <Setter Property="Background" Value="#272B33" />
+                        <Setter Property="Foreground" Value="#E8E8E9" />
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        <Style.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="BorderBrush" Value="#272B33" />
+                                <Setter Property="BorderThickness" Value="1" />
+                                <Setter Property="CornerRadius" Value="15"/>
+                            </Style>
+                        </Style.Resources>
+                    </Style>
+                </Grid.Resources>
+                
+                <Button Name="btn_AC" Grid.Row="0" Grid.Column="0" Content="AC" Style="{StaticResource special}"/>
+                <Button Name="btn_Avoir" Grid.Row="0" Grid.Column="1" Content="?" Style="{StaticResource special}"/>
+                <Button Name="btn_Percent" Grid.Row="0" Grid.Column="2" Content="%" Style="{StaticResource special}"/>
+                <Button Name="btn_Divide" Grid.Row="0" Grid.Column="3" Content="/" Style="{StaticResource operations}"/>
 
-        <Button Grid.Row="2" Grid.Column="0" Name="btn_7" Content="7"/>
-        <Button Grid.Row="2" Grid.Column="1" Name="btn_8" Content="8"/>
-        <Button Grid.Row="2" Grid.Column="2" Name="btn_9" Content="9"/>
-        <Button Grid.Row="2" Grid.Column="3" Name="btn_sub" Content="-" Style="{StaticResource operations}"/>
+                <Button Name="btn_7" Grid.Row="1" Grid.Column="0" Content="7" Style="{StaticResource numbers}"/>
+                <Button Name="btn_8" Grid.Row="1" Grid.Column="1" Content="8" Style="{StaticResource numbers}"/>
+                <Button Name="btn_9" Grid.Row="1" Grid.Column="2" Content="9" Style="{StaticResource numbers}"/>
+                <Button Name="btn_Multiplier" Grid.Row="1" Grid.Column="3" Content="x" Style="{StaticResource operations}"/>
+                
+                <Button Name="btn_4" Grid.Row="2" Grid.Column="0" Content="4" Style="{StaticResource numbers}"/>
+                <Button Name="btn_5" Grid.Row="2" Grid.Column="1" Content="5" Style="{StaticResource numbers}"/>
+                <Button Name="btn_6" Grid.Row="2" Grid.Column="2" Content="6" Style="{StaticResource numbers}"/>
+                <Button Name="btn_Substract" Grid.Row="2" Grid.Column="3" Content="-" Style="{StaticResource operations}"/>
+                
+                <Button Name="btn_1" Grid.Row="3" Grid.Column="0" Content="1" Style="{StaticResource numbers}"/>
+                <Button Name="btn_2" Grid.Row="3" Grid.Column="1" Content="2" Style="{StaticResource numbers}"/>
+                <Button Name="btn_3" Grid.Row="3" Grid.Column="2" Content="3" Style="{StaticResource numbers}"/>
+                <Button Name="btn_Add" Grid.Row="3" Grid.Column="3" Content="+" Style="{StaticResource operations}"/>
 
-        <Button Grid.Row="3" Grid.Column="0" Name="btn_4" Content="4"/>
-        <Button Grid.Row="3" Grid.Column="1" Name="btn_5" Content="5"/>
-        <Button Grid.Row="3" Grid.Column="2" Name="btn_6" Content="6"/>
-        <Button Grid.Row="3" Grid.Column="3" Name="btn_add" Content="+" Style="{StaticResource operations}"/>
+                <Button Name="btn_return" Grid.Row="4" Grid.Column="0" Style="{StaticResource numbers}">
+                    <Image Source="/left-arrow.png" />
+                </Button>
+                <Button Name="btn_0" Grid.Row="4" Grid.Column="1" Content="0" Style="{StaticResource numbers}"/>
+                <Button Name="btn_Dot" Grid.Row="4" Grid.Column="2" Content="." Style="{StaticResource numbers}"/>
+                <Button Name="btn_Equal" Grid.Row="4" Grid.Column="3" Content="=" Style="{StaticResource operations}"/>
 
-        <Button Grid.Row="4" Grid.Column="0" Name="btn_1" Content="1"/>
-        <Button Grid.Row="4" Grid.Column="1" Name="btn_2" Content="2"/>
-        <Button Grid.Row="4" Grid.Column="2" Name="btn_3" Content="3"/>
-        <Button Grid.RowSpan="2" Grid.Row="4" Grid.Column="3" Name="btn_equal" Content="=" Style="{StaticResource operations}"/>
-
-        <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Name="btn_0" Content="0"/>
-        <Button Grid.Row="5" Grid.Column="2" Name="btn_dot" Content="."/>
-    </Grid>
+            </Grid>
+        </Grid>
+    </Border>
 </Window>
+
+
+<!--<Grid>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+        <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="150"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <Grid.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="Background" Value="#555B60" />
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="operations" TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="7" />
+            <Setter Property="FontSize" Value="38" />
+            <Setter Property="Background" Value="#F3AB41" />
+            <Setter Property="Foreground" Value="#FFFFFF" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="BorderBrush" Value="#F3AB41" />
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="CornerRadius" Value="15" />
+                </Style>
+            </Style.Resources>
+        </Style>
+
+    </Grid.Resources>
+    <TextBox Grid.Row="0" Grid.ColumnSpan="4" Name="tb_Display"/>
+
+    <Button Grid.Row="1" Grid.Column="0" Name="btn_MC" Content="MC" Style="{StaticResource operations}"/>
+    <Button Grid.Row="1" Grid.Column="1" Name="btn_Madd" Content="M+" Style="{StaticResource operations}"/>
+    <Button Grid.Row="1" Grid.Column="2" Name="btn_div" Content="/" Style="{StaticResource operations}"/>
+    <Button Grid.Row="1" Grid.Column="3" Name="btn_mult" Content="*" Style="{StaticResource operations}"/>
+
+    <Button Grid.Row="2" Grid.Column="0" Name="btn_7" Content="7"/>
+    <Button Grid.Row="2" Grid.Column="1" Name="btn_8" Content="8"/>
+    <Button Grid.Row="2" Grid.Column="2" Name="btn_9" Content="9"/>
+    <Button Grid.Row="2" Grid.Column="3" Name="btn_sub" Content="-" Style="{StaticResource operations}"/>
+
+    <Button Grid.Row="3" Grid.Column="0" Name="btn_4" Content="4"/>
+    <Button Grid.Row="3" Grid.Column="1" Name="btn_5" Content="5"/>
+    <Button Grid.Row="3" Grid.Column="2" Name="btn_6" Content="6"/>
+    <Button Grid.Row="3" Grid.Column="3" Name="btn_add" Content="+" Style="{StaticResource operations}"/>
+
+    <Button Grid.Row="4" Grid.Column="0" Name="btn_1" Content="1"/>
+    <Button Grid.Row="4" Grid.Column="1" Name="btn_2" Content="2"/>
+    <Button Grid.Row="4" Grid.Column="2" Name="btn_3" Content="3"/>
+    <Button Grid.RowSpan="2" Grid.Row="4" Grid.Column="3" Name="btn_equal" Content="=" Style="{StaticResource operations}"/>
+
+    <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Name="btn_0" Content="0"/>
+    <Button Grid.Row="5" Grid.Column="2" Name="btn_dot" Content="."/>
+</Grid>-->

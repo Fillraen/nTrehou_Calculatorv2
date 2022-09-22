@@ -7,4 +7,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="left-arrow.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="left-arrow.png" />
+  </ItemGroup>
+
 </Project>
